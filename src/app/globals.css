@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer base {
+
   :root {
     --color-primary: 255 255 255;
     --color-secondary: 0 1 18;
@@ -16,12 +17,11 @@
     --color-red-error-hover: 255 152 152;
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --color-primary: 43 44 55;
-      --color-secondary: 255 255 255;
-      --color-content: 32 33 44;
-      --color-lines: 62 63 78;
-    }
+  :root[data-theme="dark"] {
+    --color-primary: 43 44 55;
+    --color-secondary: 255 255 255;
+    --color-content: 32 33 44;
+    --color-lines: 62 63 78;
   }
+
 }
