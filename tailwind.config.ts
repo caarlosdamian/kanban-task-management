@@ -20,6 +20,9 @@ const config: Config = {
         mainPurple: 'rgb(var(--color-main-purple) / <alpha-value>)',
         mainPurpleHover: 'rgb(var(--color-main-purple-hover) / <alpha-value>)',
       },
+      spacing: {
+        '18px': '18px',
+      },
     },
   },
   plugins: [],
