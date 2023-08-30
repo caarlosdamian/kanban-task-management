@@ -1,7 +1,13 @@
 'use client';
-import { ThemeProvider } from 'next-themes';
 import React, { ReactNode } from 'react';
+import { store } from '@/redux/store';
+import { ThemeProvider } from 'next-themes';
+import { Provider } from 'react-redux';
 
-export const ThemeContextProvider = ({ children }: { children: ReactNode }) => {
-  return <ThemeProvider enableSystem={true} >{children}</ThemeProvider>;
+export const ContextProvider = ({ children }: { children: ReactNode }) => {
+  return (
+    <Provider store={store}>
+      <ThemeProvider enableSystem={true}>{children}</ThemeProvider>
+    </Provider>
+  );
 };
