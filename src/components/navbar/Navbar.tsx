@@ -8,8 +8,8 @@ export const Navbar = () => {
   const { resolvedTheme } = useTheme();
   //
   return (
-    <nav className="flex items-center gap-4 bg-primary  border-b border-lines">
-      <div className=" pl-4 py-5  md:w-full md:py-7 md:px-6 md:min-w-[260px] max-w-[300px] md:flex-1">
+    <nav className="flex items-center gap-4 bg-primary md:gap-0 ">
+      <div className="pl-4 py-5 min-h-[50px] md:px-6 md:py-[40.5px] border-b md:min-w-[260px]  border-lines md:relative">
         <Image
           src="/logo-mobile.svg"
           alt="logo-mobile"
@@ -25,7 +25,7 @@ export const Navbar = () => {
           className="hidden md:block"
         />
       </div>
-      <div className="flex items-center justify-between w-full  pr-4 py-5 md:px-6 md:py-7 md:border-l md:border-lines lg:px-8">
+      <div className="flex items-center justify-between w-full  pr-4 py-5 md:px-6 md:py-7 md:border-l md:border-lines lg:px-8 border-b border-lines">
         <div className="flex gap-2 items-center cursor-pointer">
           <h1 className="text-base font-semibold md:text-xl">
             Platform Launch
