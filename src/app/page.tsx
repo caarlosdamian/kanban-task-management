@@ -1,4 +1,4 @@
-import { Empty } from '@/components';
+import { Content, Empty } from '@/components';
 import { Navbar } from '@/components/navbar/Navbar';
 import { Sidebar } from '@/components/sidebar/Sidebar';
 
@@ -8,9 +8,7 @@ export default function Home() {
         <Navbar />
         <div className="flex w-screen h-[calc(100vh-72px)]">
           <Sidebar />
-          <div className="basis-full">
-            <Empty />
-          </div>
+            <Content />
         </div>
       </main>
   );
