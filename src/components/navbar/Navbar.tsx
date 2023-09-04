@@ -43,7 +43,9 @@ export const Navbar = () => {
             alt="logo-mobile"
             width={8}
             height={4}
-            className="md:hidden"
+            className={`md:hidden transition-all ease-in-out  ${
+              isOpen ? 'rotate-180' : ''
+            }`}
             onClick={() => dispatch(toggle())}
           />
         </div>

@@ -6,6 +6,7 @@ export interface Board {
   name: string;
   columns: Column[];
   isActive: boolean;
+  id: any;
 }
 
 export interface Column {

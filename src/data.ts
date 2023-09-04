@@ -4,6 +4,7 @@ export const initialState: RootObject = {
   boards: [
     {
       name: 'Platform Launch',
+      id: 1,
       isActive: true,
       columns: [
         {
@@ -299,6 +300,7 @@ export const initialState: RootObject = {
     },
     {
       name: 'Marketing Plan',
+      id: 2,
       isActive: false,
       columns: [
         {
@@ -391,6 +393,7 @@ export const initialState: RootObject = {
     },
     {
       name: 'Roadmap',
+      id: 3,
       isActive: false,
       columns: [
         {

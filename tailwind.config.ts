@@ -23,6 +23,9 @@ const config: Config = {
       spacing: {
         '18px': '18px',
       },
+      padding:{
+        '14px': '14px'
+      }
     },
   },
   plugins: [],
