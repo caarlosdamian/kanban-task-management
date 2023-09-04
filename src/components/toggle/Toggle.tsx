@@ -9,9 +9,7 @@ export const Toggle = () => {
       onClick={() => setTheme(resolvedTheme === 'light' ? 'dark' : 'light')}
     >
       <div
-        className={`bg-white rounded-full h-[14px] w-[14px] absolute top-[3px] left-[3px] transition-all ease-in-out se ${
-          resolvedTheme === 'light' ? '' : 'translate-x-5'
-        } `}
+        className={`bg-white rounded-full h-[14px] w-[14px] absolute top-[3px] left-[3px] transition-all ease-in-out se ${resolvedTheme === 'light' &&  resolvedTheme !== undefined ? '' : 'translate-x-5'} `}
       />
     </div>
   );

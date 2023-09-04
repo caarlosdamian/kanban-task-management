@@ -26,7 +26,11 @@ export const Navbar = () => {
           className="md:hidden"
         />
         <Image
-          src={`/logo-${resolvedTheme === 'dark' ? 'light' : 'dark'}.svg`}
+          src={`${
+            resolvedTheme === 'dark' && resolvedTheme !== undefined
+              ? './logo-light.svg'
+              : './logo-dark.svg'
+          }`}
           alt="logo-mobile"
           width={150}
           height={24}
