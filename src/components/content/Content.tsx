@@ -9,7 +9,7 @@ export const Content = () => {
   const { boards } = useSelector((state: RootState) => state.board);
   const selectedBoard = boards.filter((board) => board.isActive !== false);
   return (
-    <div className="basis-full bg-content">
+    <div className="bg-content">
       {boards.length !== 0 ? (
         <Board board={selectedBoard[0]} />
       ) : selectedBoard[0].columns.length !== 0 ? (

@@ -1,7 +1,10 @@
 import { Board as BoardType } from '@/types';
 import React from 'react';
-import { Column } from '../column/Column';
+import dynamic from 'next/dynamic';
 
+const Column = dynamic(() => import('../column/Column'), {
+  ssr: false,
+});
 interface Props {
   board: BoardType;
 }
