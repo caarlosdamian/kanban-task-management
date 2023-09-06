@@ -3,15 +3,21 @@ import React from 'react';
 import { TaskCard } from '../taskCard/TaskCard';
 interface Props {
   colum: ColumType;
+  colIndex: number;
 }
 
-export const Column = ({ colum }: Props) => {
+export const Column = ({ colum, colIndex }: Props) => {
   return (
-    <div>
+    <div className="flex flex-col gap-6 w-[280px]">
       <p>{colum.name}</p>
-      <div className="">
+      <div className="flex flex-col gap-5">
         {colum.tasks.map((task, index) => (
-          <TaskCard key={`task-${task.title}-${index}`} item={task} />
+          <TaskCard
+            colIndex={colIndex}
+            taskIndex={index}
+            key={`task-${task.title}-${index}`}
+            item={task}
+          />
         ))}
       </div>
     </div>

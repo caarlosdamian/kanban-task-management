@@ -7,11 +7,10 @@ interface Props {
 }
 export const Board = ({ board }: Props) => {
   return (
-    <div className="flex w-full px-4 py-6 gap-6">
-      {board.columns.map((colum) => (
-        <Column colum={colum} key={colum.name} />
+    <div className="flex gap-6 w-full px-4 py-6">
+      {board.columns.map((colum, index) => (
+        <Column colum={colum} key={colum.name} colIndex={index} />
       ))}
-      <div className="w-screen h-full">d</div>
     </div>
   );
 };
