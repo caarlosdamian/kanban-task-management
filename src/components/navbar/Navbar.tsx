@@ -12,10 +12,12 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const { isOpen } = useSelector((state: RootState) => state.sidebar);
   return (
-    <nav className="h-[64px] md:h-20  lg:h-[97px]">
+    <nav className="h-[64px] md:h-20 lg:h-[97px] z-50 relative">
       <div className="fixed md:h-20 lg:h-[97px] left-0 right-0 flex items-center justify-start gap-4 bg-primary md:gap-0 max-h-[97px]">
         <div
-          className={`pl-4 py-5 min-h-[50px] md:pt-8 md:min-h-[80px] lg:min-h-[97px] md:px-6 md:min-w-[264px] md:border-lines lg:items-center lg:flex lg:justify-center ${isOpen ? '' : 'md:border-b'} md:relative`}
+          className={`pl-4 py-5 min-h-[50px] md:pt-8 md:min-h-[80px] lg:min-h-[97px] md:px-6 md:min-w-[264px] md:border-lines lg:items-center lg:flex lg:justify-center ${
+            isOpen ? '' : 'md:border-b'
+          } md:relative`}
         >
           <Image
             src="/logo-mobile.svg"
@@ -81,5 +83,4 @@ const Navbar = () => {
   );
 };
 
-
-export default Navbar
+export default Navbar;

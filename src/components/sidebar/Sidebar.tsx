@@ -27,7 +27,7 @@ export const Sidebar = () => {
     <aside
       className={`${
         device === 'mobile' ? 'rounded-lg' : ''
-      } h-full w-[264px] shadow-2xl md:shadow-none md:h-screen bg-primary md:max-w-[300px] md:min-[260px] py-4`}
+      } h-full w-[264px] shadow-2xl md:shadow-none md:h-[calc(100vh - 80px)] bg-primary md:max-w-[300px] md:min-[260px] py-4 flex flex-col justify-between md:py-8`}
     >
       <div className="flex flex-col gap-5">
         <div className="px-6">
@@ -71,7 +71,7 @@ export const Sidebar = () => {
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-center px-4">
+      <div className="flex items-center justify-center md:flex-col gap-4 px-4 md:gap-8 md:items-start">
         <div className="items-center justify-center bg-content w-full flex py-14px gap-6">
           <Image
             src="./icon-light-theme.svg"
@@ -86,6 +86,20 @@ export const Sidebar = () => {
             width={18}
             height={18}
           />
+        </div>
+        <div
+          className="hidden md:flex items-center gap-[10px] ml-2"
+          onClick={handleClose}
+        >
+          <Image
+            src="./icon-hide-sidebar.svg"
+            alt="icon-hide-sidebar"
+            height={16}
+            width={18}
+          />
+          <p className="text-[15px] text-mediumGray font-bold leading-normal">
+            Hide Sidebar
+          </p>
         </div>
       </div>
     </aside>
