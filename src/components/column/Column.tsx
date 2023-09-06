@@ -7,8 +7,16 @@ interface Props {
 }
 
 export const Column = ({ colum, colIndex }: Props) => {
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    const { prevColIndex, taskIndex } = JSON.parse(
+      e.dataTransfer.getData('text')
+    );
+    if(prevColIndex !== colIndex){
+      console.log('diferente')
+    }
+  };
   return (
-    <div className="flex flex-col gap-6 w-[280px]">
+    <div onDrop={handleDrop} className="flex flex-col gap-6 w-[280px]">
       <p>{colum.name}</p>
       <div className="flex flex-col gap-5">
         {colum.tasks.map((task, index) => (

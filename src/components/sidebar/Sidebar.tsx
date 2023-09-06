@@ -7,7 +7,11 @@ import { RootState } from '@/redux/store';
 import { useDevice } from '@/hooks/useDevice';
 import Image from 'next/image';
 import { setActiveBoard } from '@/redux/boardSlice/boardSlice';
-import { Toggle } from '../toggle/Toggle';
+import dynamic from 'next/dynamic';
+
+const Toggle = dynamic(() => import('../toggle/Toggle'), {
+  ssr: false,
+});
 
 export const Sidebar = () => {
   const device = useDevice();
