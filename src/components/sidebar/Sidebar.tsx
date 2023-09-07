@@ -27,7 +27,7 @@ export const Sidebar = () => {
     <aside
       className={`${
         device === 'mobile' ? 'rounded-lg' : ''
-      } h-full w-[264px] shadow-2xl md:shadow-none md:h-[calc(100vh - 80px)] bg-primary md:max-w-[300px] md:min-[260px] py-4 flex flex-col justify-between md:py-8`}
+      } md:fixed left-0 h-full w-[264px] shadow-2xl md:shadow-none md:h-[calc(100vh-80px)] bg-primary md:max-w-[300px] md:min-[260px] py-4 flex flex-col md:justify-between md:pt-8 md:pb-11`}
     >
       <div className="flex flex-col gap-5">
         <div className="px-6">
@@ -40,7 +40,7 @@ export const Sidebar = () => {
             <div
               className={`${
                 board.isActive ? 'bg-mainPurple text-white ' : ''
-              } max-w-[240px] flex gap-3 items-center text-mediumGray text-base font-medium px-6 py-[14px]`}
+              } cursor-pointer max-w-[240px] flex gap-3 items-center text-mediumGray text-base font-medium px-6 py-[14px]`}
               key={`${board.name}-${board.id}`}
               style={{
                 borderRadius: board.isActive ? '0px 100px 100px 0px' : '',
@@ -88,7 +88,7 @@ export const Sidebar = () => {
           />
         </div>
         <div
-          className="hidden md:flex items-center gap-[10px] ml-2"
+          className="hidden md:flex items-center gap-[10px] ml-2 cursor-pointer"
           onClick={handleClose}
         >
           <Image

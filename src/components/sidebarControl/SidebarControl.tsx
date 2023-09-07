@@ -12,7 +12,7 @@ export const SidebarControl = () => {
     <>
       {isOpen ? null : (
         <div
-          className={`cursor-pointer absolute w-14 h-12 rounded-r-[100px] bg-mainPurple left-0 bottom-8 items-center justify-center ${
+          className={`hidden cursor-pointer absolute w-14 h-12 rounded-r-[100px] bg-mainPurple left-0 top-[calc(100vh-80px)] items-center justify-center ${
             isOpen ? 'hidden' : 'md:flex'
           }`}
           onClick={() => dispatch(toggle())}

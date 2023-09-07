@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <main className="bg-content min-w-screen min-h-screen transition-all ease-in-out relative">
       <Navbar />
-      <div className="flex w-screen h-[calc(100%-72px)]">
+      <div className="flex w-screen h-[calc(100%-80px)]">
         <Sidebar />
         <Content />
       </div>
