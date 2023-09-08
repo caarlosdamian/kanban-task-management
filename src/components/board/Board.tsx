@@ -8,6 +8,7 @@ const Column = dynamic(() => import('../column/Column'), {
 interface Props {
   board: BoardType;
 }
+
 export const Board = ({ board }: Props) => {
   return (
     <div className="flex gap-6 w-full px-4 py-6">
