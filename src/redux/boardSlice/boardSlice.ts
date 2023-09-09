@@ -6,10 +6,10 @@ export const boardSlice = createSlice({
   initialState,
   reducers: {
     setActiveBoard: (state, { payload }) => {
-      return state = state.map((board) => ({
+      return (state = state.map((board) => ({
         ...board,
         isActive: board.id === payload ? true : false,
-      }));
+      })));
     },
     toggleTask: (
       state,
