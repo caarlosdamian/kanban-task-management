@@ -4,7 +4,7 @@ import sidebarReducer from './sidebarSlice/sidebarSlice';
 
 export const store = configureStore({
   reducer: {
-    board: boardReducer,
+    boards: boardReducer,
     sidebar: sidebarReducer,
   },
 });

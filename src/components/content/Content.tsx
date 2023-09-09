@@ -7,7 +7,7 @@ import { Board } from '../board/Board';
 
 export const Content = () => {
   const {
-    board: { boards },
+    boards,
     sidebar: { isOpen },
   } = useSelector((state: RootState) => state);
   const selectedBoard = boards.filter((board) => board.isActive !== false);

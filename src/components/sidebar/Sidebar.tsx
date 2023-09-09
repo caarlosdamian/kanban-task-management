@@ -8,6 +8,7 @@ import { useDevice } from '@/hooks/useDevice';
 import Image from 'next/image';
 import { setActiveBoard } from '@/redux/boardSlice/boardSlice';
 import dynamic from 'next/dynamic';
+import { useTheme } from 'next-themes';
 
 const Toggle = dynamic(() => import('../toggle/Toggle'), {
   ssr: false,
@@ -16,8 +17,9 @@ const Toggle = dynamic(() => import('../toggle/Toggle'), {
 export const Sidebar = () => {
   const device = useDevice();
   const dispatch = useDispatch();
-  const { boards } = useSelector((state: RootState) => state.board);
+  const { boards } = useSelector((state: RootState) => state);
   const amount = useMemo(() => boards.length, [boards]);
+  const { resolvedTheme, setTheme } = useTheme();
 
   const handleClose = () => {
     dispatch(toggle());
@@ -78,6 +80,8 @@ export const Sidebar = () => {
             alt="board"
             width={18}
             height={18}
+            className='cursor-pointer'
+            onClick={() => setTheme('light')}
           />
           <Toggle />
           <Image
@@ -85,6 +89,8 @@ export const Sidebar = () => {
             alt="board"
             width={18}
             height={18}
+            className='cursor-pointer'
+            onClick={() => setTheme('dark')}
           />
         </div>
         <div

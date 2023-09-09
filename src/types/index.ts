@@ -1,6 +1,4 @@
-export interface RootObject {
-  boards: Board[];
-}
+
 
 export interface Board {
   name: string;

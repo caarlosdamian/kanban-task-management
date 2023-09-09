@@ -9,7 +9,7 @@ const Toggle = () => {
   const className = resolvedTheme !== undefined && resolvedTheme === 'light' ? '' : 'translate-x-5';
   return (
     <div
-      className="relative w-10 h-5 bg-mainPurple rounded-xl"
+      className="relative w-10 h-5 bg-mainPurple rounded-xl cursor-pointer"
       onClick={() => setTheme(resolvedTheme === 'light' ? 'dark' : 'light')}
     >
       <div

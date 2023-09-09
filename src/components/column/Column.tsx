@@ -4,18 +4,21 @@ import React, { useMemo } from 'react';
 import { TaskCard } from '../taskCard/TaskCard';
 import { colors } from '@/utils/common';
 import _ from 'lodash';
+import { useDispatch } from 'react-redux';
+import { toggleTask } from '@/redux/boardSlice/boardSlice';
 interface Props {
   colum: ColumType;
   colIndex: number;
 }
 
 const Column = ({ colum, colIndex }: Props) => {
+  const dispatch = useDispatch();
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     const { prevColIndex, taskIndex } = JSON.parse(
       e.dataTransfer.getData('text')
     );
     if (prevColIndex !== colIndex) {
-      console.log('diferente');
+      dispatch(toggleTask({ prevColIndex, colIndex, taskIndex }));
     }
   };
 
@@ -24,8 +27,13 @@ const Column = ({ colum, colIndex }: Props) => {
     () => _.shuffle(colors).sort(() => 0.5 - Math.random())[0],
     []
   );
+
   return (
-    <div onDrop={handleDrop} className="flex flex-col gap-6 w-[280px]">
+    <div
+      onDrop={handleDrop}
+      onDragOver={(e) => e.preventDefault()}
+      className="flex flex-col gap-6 w-[280px] h-screen"
+    >
       <div className="flex gap-3 items-center">
         <div
           className={`rounded-full h-[15px] w-[15px]`}

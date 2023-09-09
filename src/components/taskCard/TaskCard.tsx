@@ -20,7 +20,6 @@ export const TaskCard = ({ item, colIndex, taskIndex }: Props) => {
     <div
       className="cursor-pointer py-6 px-4 bg-primary rounded-lg"
       style={{ boxShadow: '0px 4px 6px 0px rgba(54, 78, 126, 0.10)' }}
-      onDragOver={(e) => e.preventDefault()}
       draggable
       onDragStart={handleOnDrag}
     >
