@@ -26,14 +26,21 @@ export const boardSlice = createSlice({
       }
     ) => {
       const { newTaskIndex, prevColIndex, taskIndex } = payload;
+      const activeIndex = current(state).findIndex(
+        (element) => element.isActive
+      );
+      const currentTask =
+        current(state)[activeIndex].columns[prevColIndex].tasks[taskIndex];
+      const newTask =
+        current(state)[activeIndex].columns[prevColIndex].tasks[newTaskIndex];
 
-      state[prevColIndex].columns[prevColIndex].tasks = state[
-        prevColIndex
+      state[activeIndex].columns[prevColIndex].tasks = state[
+        activeIndex
       ].columns[prevColIndex].tasks.map((taski, index) => {
         if (index === newTaskIndex) {
-          return state[prevColIndex].columns[prevColIndex].tasks[taskIndex];
+          return currentTask;
         } else if (index === taskIndex) {
-          return state[prevColIndex].columns[prevColIndex].tasks[newTaskIndex];
+          return newTask;
         }
         return taski;
       });
