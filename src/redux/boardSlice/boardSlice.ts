@@ -1,5 +1,7 @@
 import { createSlice, current } from '@reduxjs/toolkit';
 import { initialState } from '@/data';
+import { RootState } from '../store';
+import { Board } from '@/types';
 
 export const boardSlice = createSlice({
   name: 'board',
@@ -12,6 +14,53 @@ export const boardSlice = createSlice({
       })));
     },
     toggleTask: (
+      state: Board[],
+      {
+        payload,
+      }: {
+        payload: {
+          newTaskIndex: number;
+          prevColIndex: number;
+          taskIndex: number;
+        };
+      }
+    ) => {
+      const { newTaskIndex, prevColIndex, taskIndex } = payload;
+      const activeBoard = current(state).filter((board) => board.isActive);
+      const activeBoardIndex = current(state)
+        .map((item, index) => item.isActive && index)
+        .filter((board) => board !== false);
+      const movedTask = activeBoard[0].columns[prevColIndex].tasks[taskIndex];
+      const prevTask = activeBoard[0].columns[prevColIndex].tasks[newTaskIndex];
+
+      const newState = current(state).map((item) =>
+        item.isActive
+          ? {
+              ...activeBoard[0],
+              columns: [
+                ...activeBoard[0].columns,
+                activeBoard[0].columns[prevColIndex].tasks.map(
+                  (task, index) => {
+                    if (index === newTaskIndex) {
+                      return activeBoard[0].columns[prevColIndex].tasks[
+                        taskIndex
+                      ];
+                    } else if (index === taskIndex) {
+                      return activeBoard[0].columns[prevColIndex].tasks[
+                        newTaskIndex
+                      ];
+                    }
+                  }
+                ),
+              ],
+            }
+          : item
+      );
+
+      // console.log([activeBoardIndex[0]]);
+      // state = sta;
+    },
+    toggleColum: (
       state,
       {
         payload,
@@ -53,6 +102,6 @@ export const boardSlice = createSlice({
   },
 });
 
-export const { setActiveBoard, toggleTask } = boardSlice.actions;
+export const { setActiveBoard, toggleTask, toggleColum } = boardSlice.actions;
 
 export default boardSlice.reducer;

@@ -5,7 +5,7 @@ import { TaskCard } from '../taskCard/TaskCard';
 import { colors } from '@/utils/common';
 import _ from 'lodash';
 import { useDispatch } from 'react-redux';
-import { toggleTask } from '@/redux/boardSlice/boardSlice';
+import { toggleColum } from '@/redux/boardSlice/boardSlice';
 interface Props {
   colum: ColumType;
   colIndex: number;
@@ -18,7 +18,7 @@ const Column = ({ colum, colIndex }: Props) => {
       e.dataTransfer.getData('text')
     );
     if (prevColIndex !== colIndex) {
-      dispatch(toggleTask({ prevColIndex, colIndex, taskIndex }));
+      dispatch(toggleColum({ prevColIndex, colIndex, taskIndex }));
     }
   };
 
@@ -47,7 +47,7 @@ const Column = ({ colum, colIndex }: Props) => {
         {colum.tasks.map((task, index) => (
           <TaskCard
             colIndex={colIndex}
-            taskIndex={index}
+            task={index}
             key={`task-${task.title}-${index}`}
             item={task}
           />
