@@ -26,39 +26,17 @@ export const boardSlice = createSlice({
       }
     ) => {
       const { newTaskIndex, prevColIndex, taskIndex } = payload;
-      const activeBoard = current(state).filter((board) => board.isActive);
-      const activeBoardIndex = current(state)
-        .map((item, index) => item.isActive && index)
-        .filter((board) => board !== false);
-      const movedTask = activeBoard[0].columns[prevColIndex].tasks[taskIndex];
-      const prevTask = activeBoard[0].columns[prevColIndex].tasks[newTaskIndex];
 
-      const newState = current(state).map((item) =>
-        item.isActive
-          ? {
-              ...activeBoard[0],
-              columns: [
-                ...activeBoard[0].columns,
-                activeBoard[0].columns[prevColIndex].tasks.map(
-                  (task, index) => {
-                    if (index === newTaskIndex) {
-                      return activeBoard[0].columns[prevColIndex].tasks[
-                        taskIndex
-                      ];
-                    } else if (index === taskIndex) {
-                      return activeBoard[0].columns[prevColIndex].tasks[
-                        newTaskIndex
-                      ];
-                    }
-                  }
-                ),
-              ],
-            }
-          : item
-      );
-
-      // console.log([activeBoardIndex[0]]);
-      // state = sta;
+      state[prevColIndex].columns[prevColIndex].tasks = state[
+        prevColIndex
+      ].columns[prevColIndex].tasks.map((taski, index) => {
+        if (index === newTaskIndex) {
+          return state[prevColIndex].columns[prevColIndex].tasks[taskIndex];
+        } else if (index === taskIndex) {
+          return state[prevColIndex].columns[prevColIndex].tasks[newTaskIndex];
+        }
+        return taski;
+      });
     },
     toggleColum: (
       state,
