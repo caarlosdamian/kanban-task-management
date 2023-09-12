@@ -1,7 +1,10 @@
 import { createSlice, current } from '@reduxjs/toolkit';
 import { initialState } from '@/data';
-import { RootState } from '../store';
 import { Board } from '@/types';
+import {
+  getActiveBoard,
+  getActiveBoardIndex,
+} from '../selectors/boardSelectors';
 
 export const boardSlice = createSlice({
   name: 'board',
@@ -26,9 +29,7 @@ export const boardSlice = createSlice({
       }
     ) => {
       const { newTaskIndex, prevColIndex, taskIndex } = payload;
-      const activeIndex = current(state).findIndex(
-        (element) => element.isActive
-      );
+      const activeIndex = getActiveBoardIndex(state);
       const currentTask =
         current(state)[activeIndex].columns[prevColIndex].tasks[taskIndex];
       const newTask =
@@ -54,11 +55,9 @@ export const boardSlice = createSlice({
       }
     ) => {
       const { colIndex, prevColIndex, taskIndex } = payload;
-      const activeBoard = current(state).filter((board) => board.isActive);
+      const activeBoard = getActiveBoard(state);
       const movedTask = activeBoard[0].columns[prevColIndex].tasks[taskIndex];
-      const activeIndex = current(state).findIndex(
-        (element) => element.isActive
-      );
+      const activeIndex = getActiveBoardIndex(state);
       state[activeIndex].columns = state[activeIndex].columns.map(
         (colum, index) => {
           if (index === prevColIndex) {
