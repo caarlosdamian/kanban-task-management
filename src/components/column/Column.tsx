@@ -32,7 +32,7 @@ const Column = ({ colum, colIndex }: Props) => {
     <div
       onDrop={handleDrop}
       onDragOver={(e) => e.preventDefault()}
-      className="flex flex-col gap-6 w-[280px] h-screen"
+      className="flex flex-col gap-6 w-[280px] h-full"
     >
       <div className="flex gap-3 items-center">
         <div
