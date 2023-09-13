@@ -1,3 +1,4 @@
+import { BoardForm } from '@/components/boardForm/BoardForm';
 import { Content } from '@/components/content/Content';
 import { Sidebar } from '@/components/sidebar/Sidebar';
 import { SidebarControl } from '@/components/sidebarControl/SidebarControl';

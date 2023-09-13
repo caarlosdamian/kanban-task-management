@@ -15,7 +15,7 @@ export const Modal = ({
     <div
       className={`${
         isOpen ? 'block' : 'hidden'
-      } bg-black bg-opacity-25 h-screen w-screen fixed top-0 left-0 rounded-lg`}
+      } bg-black bg-opacity-25 h-screen w-screen fixed top-0 left-0 rounded-lg z-50`}
       onClick={onOverlayClick}
     >
       <div
