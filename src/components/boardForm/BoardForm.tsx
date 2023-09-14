@@ -1,19 +1,24 @@
 'use client';
 import React from 'react';
 import { Modal, TextField } from '..';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleModalType } from '@/redux/modalSlice/ModalSlice';
+import { RootState } from '@/redux/store';
 
 interface Props {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const BoardForm = ({ isOpen, setIsOpen }: Props) => {
+export const BoardForm = () => {
+  const dispatch = useDispatch();
+  const { type } = useSelector((state: RootState) => state.modal);
   const handleClosed = () => {
-    setIsOpen(false);
+    dispatch(toggleModalType('idle'));
   };
   return (
     <Modal
-      isOpen={isOpen}
+      isOpen={type === 'addBoard' || type === 'editBoard'}
       onOverlayClick={handleClosed}
       className="bg-primary min-w-[343px] h-[413px] z-50 top-40 p-8"
     >

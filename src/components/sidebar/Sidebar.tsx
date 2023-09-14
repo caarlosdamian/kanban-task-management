@@ -9,6 +9,7 @@ import Image from 'next/image';
 import { setActiveBoard } from '@/redux/boardSlice/boardSlice';
 import dynamic from 'next/dynamic';
 import { useTheme } from 'next-themes';
+import { toggleModalType } from '@/redux/modalSlice/ModalSlice';
 
 const Toggle = dynamic(() => import('../toggle/Toggle'), {
   ssr: false,
@@ -69,7 +70,12 @@ export const Sidebar = () => {
               width={16}
               height={16}
             />
-            <p className="text-mainPurple">+ Create New Board</p>
+            <p
+              className="text-mainPurple"
+              onClick={() => dispatch(toggleModalType('addBoard'))}
+            >
+              + Create New Board
+            </p>
           </div>
         </div>
       </div>
@@ -80,7 +86,7 @@ export const Sidebar = () => {
             alt="board"
             width={18}
             height={18}
-            className='cursor-pointer'
+            className="cursor-pointer"
             onClick={() => setTheme('light')}
           />
           <Toggle />
@@ -89,7 +95,7 @@ export const Sidebar = () => {
             alt="board"
             width={18}
             height={18}
-            className='cursor-pointer'
+            className="cursor-pointer"
             onClick={() => setTheme('dark')}
           />
         </div>

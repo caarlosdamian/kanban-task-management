@@ -39,7 +39,10 @@ const Navbar = () => {
           />
         </div>
         <div className="flex items-center justify-between w-full pr-4 py-5 md:px-6 md:py-4 md:border-l lg:px-8 md:border-b md:border-lines md:max-h-20  lg:pt-5 lg:pb-7 lg:max-h-[97px]">
-          <div className="flex gap-2 items-center cursor-pointer">
+          <div
+            className="flex gap-2 items-center cursor-pointer"
+            onClick={() => dispatch(toggle())}
+          >
             <h1 className="text-base font-semibold md:text-xl">
               Platform Launch
             </h1>
@@ -51,7 +54,6 @@ const Navbar = () => {
               className={`md:hidden transition-all ease-in-out  ${
                 isOpen ? 'rotate-180' : ''
               }`}
-              onClick={() => dispatch(toggle())}
             />
           </div>
           <div className="flex items-center gap-4 md:gap-6">
