@@ -4,6 +4,7 @@ import { Modal, TextField } from '..';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleModalType } from '@/redux/modalSlice/ModalSlice';
 import { RootState } from '@/redux/store';
+import { ArrayInput } from '../arrayInput/ArrayInput';
 
 interface Props {
   isOpen: boolean;
@@ -25,6 +26,7 @@ export const BoardForm = () => {
       <div className="">
         <h1 className="text-lg font-bold bg-primary">BoardForm</h1>
         <TextField placeholder="testing" error="dsdds" />
+        <ArrayInput placeholder="Prueba" handleClosed={() => console.log('')} />
       </div>
     </Modal>
   );
