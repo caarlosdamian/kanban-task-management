@@ -1,7 +1,7 @@
 import { useTheme } from 'next-themes';
-import React, { HtmlHTMLAttributes, useMemo } from 'react';
+import React, { ButtonHTMLAttributes, HtmlHTMLAttributes, useMemo } from 'react';
 
-interface Props extends HtmlHTMLAttributes<HTMLButtonElement> {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement>  {
   size: 'sm' | 'lg';
   variant?: 'primary' | 'secondary' | 'destructive';
   label: string;
@@ -22,8 +22,6 @@ export const Button = ({
     [size]
   );
   const { resolvedTheme } = useTheme();
-
-  console.log('===resolvedTheme', resolvedTheme);
   const variantBaseStyling = useMemo(() => {
     switch (variant) {
       case 'destructive':

@@ -3,12 +3,12 @@ import React, { ReactNode } from 'react';
 export const Modal = ({
   children,
   className,
-  isOpen,
+  isOpen = true,
   onOverlayClick = () => console.log('clicking overlay'),
 }: {
   children: ReactNode;
   className?: string;
-  isOpen: boolean;
+  isOpen?: boolean;
   onOverlayClick?: () => void;
 }) => {
   return (

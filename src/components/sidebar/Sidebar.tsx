@@ -71,7 +71,7 @@ export const Sidebar = () => {
               height={16}
             />
             <p
-              className="text-mainPurple"
+              className="text-mainPurple cursor-pointer"
               onClick={() => dispatch(toggleModalType('addBoard'))}
             >
               + Create New Board
