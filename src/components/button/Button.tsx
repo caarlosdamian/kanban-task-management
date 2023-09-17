@@ -12,6 +12,7 @@ export const Button = ({
   size,
   variant = 'primary',
   label,
+  type,
   ...props
 }: Props) => {
   const sizeBaseStyling = useMemo(
@@ -37,6 +38,7 @@ export const Button = ({
   return (
     <button
       className={`${sizeBaseStyling} ${variantBaseStyling} cursor-pointer w-full ${className}`}
+      type={type}
       {...props}
     >
       {label}

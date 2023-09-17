@@ -7,11 +7,7 @@ import { RootState } from '@/redux/store';
 import { ArrayInput } from '../arrayInput/ArrayInput';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { getActiveBoard } from '@/redux/selectors/boardSelectors';
-
-interface Props {
-  isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import { addNewBoard, editBoard } from '@/redux/boardSlice/boardSlice';
 
 export const BoardForm = () => {
   const dispatch = useDispatch();
@@ -41,7 +37,13 @@ export const BoardForm = () => {
   const handleClosed = () => {
     dispatch(toggleModalType('idle'));
   };
-  const handleSave = () => {};
+  const handleSave = (form: any) => {
+    console.log('Entrando');
+    type === 'addBoard'
+      ? dispatch(addNewBoard(form))
+      : dispatch(editBoard(form));
+    dispatch(toggleModalType('idle'));
+  };
   return (
     <Modal
       onOverlayClick={handleClosed}
@@ -53,7 +55,10 @@ export const BoardForm = () => {
         </h1>
         <div className="flex flex-col gap-2">
           <h2 className="input-label">Board Name</h2>
-          <TextField placeholder="testing" register={{ ...register('name') }} />
+          <TextField
+            placeholder="Board name..."
+            register={{ ...register('name') }}
+          />
         </div>
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">
@@ -62,9 +67,19 @@ export const BoardForm = () => {
               {fields.map((input, index) => (
                 <ArrayInput
                   key={input.id}
-                  placeholder="Prueba"
+                  placeholder="Board Column..."
                   handleClosed={() => remove(index)}
-                  register={{ ...register(`columns.${index}.name`) }}
+                  // @ts-ignore
+                  error={
+                    formState?.errors.columns &&
+                      // @ts-ignore
+                    formState?.errors?.columns[index]?.name.message
+                  }
+                  register={{
+                    ...register(`columns.${index}.name`, {
+                      required: "Can't be empty",
+                    }),
+                  }}
                 />
               ))}
             </div>
@@ -72,6 +87,7 @@ export const BoardForm = () => {
           <Button
             label="+ Add New Column"
             size={'sm'}
+            type="button"
             variant="secondary"
             onClick={() =>
               append({

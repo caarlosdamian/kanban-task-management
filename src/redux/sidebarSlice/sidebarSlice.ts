@@ -12,7 +12,6 @@ export const sidebarSlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
 export const { toggle } = sidebarSlice.actions;
 
 export default sidebarSlice.reducer;

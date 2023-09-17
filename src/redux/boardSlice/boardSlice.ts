@@ -16,6 +16,13 @@ export const boardSlice = createSlice({
         isActive: board.id === payload ? true : false,
       })));
     },
+    editBoard: (state, { payload }) => {
+      const activeIndex = getActiveBoardIndex(state);
+      state[activeIndex] = payload;
+    },
+    addNewBoard: (state, { payload }) => {
+      state.push(payload)
+    },
     toggleTask: (
       state: Board[],
       {
@@ -80,6 +87,12 @@ export const boardSlice = createSlice({
   },
 });
 
-export const { setActiveBoard, toggleTask, toggleColum } = boardSlice.actions;
+export const {
+  setActiveBoard,
+  toggleTask,
+  toggleColum,
+  editBoard,
+  addNewBoard,
+} = boardSlice.actions;
 
 export default boardSlice.reducer;
