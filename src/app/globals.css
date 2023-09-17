@@ -33,3 +33,7 @@
 .gradient-bg-dark {
   background: linear-gradient(180deg, rgba(43, 44, 55, 0.25) 0%, rgba(43, 44, 55, 0.13) 100%)
 }
+
+.input-label {
+  @apply text-xs font-bold text-mediumGray;
+}

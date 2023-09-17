@@ -1,7 +1,5 @@
-import React, {
-  HtmlHTMLAttributes,
-  useMemo,
-} from 'react';
+import { useTheme } from 'next-themes';
+import React, { HtmlHTMLAttributes, useMemo } from 'react';
 
 interface Props extends HtmlHTMLAttributes<HTMLButtonElement> {
   size: 'sm' | 'lg';
@@ -10,7 +8,7 @@ interface Props extends HtmlHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button = ({
-  className,
+  className = '',
   size,
   variant = 'primary',
   label,
@@ -23,16 +21,21 @@ export const Button = ({
         : 'py-[14px] rounded-3xl text-[15px] font-bold leading-normal',
     [size]
   );
+  const { resolvedTheme } = useTheme();
+
+  console.log('===resolvedTheme', resolvedTheme);
   const variantBaseStyling = useMemo(() => {
     switch (variant) {
       case 'destructive':
         return 'bg-error text-white hover:bg-errorHover';
       case 'secondary':
-        return 'bg-mainPurple bg-opacity-10 text-mainPurple hover:bg-mainPurpleHover hover:bg-opacity-25 dark:bg-white dark:hover:bg-white';
+        return `bg-mainPurple bg-opacity-10 text-mainPurple hover:bg-mainPurpleHover hover:bg-opacity-25 ${
+          resolvedTheme === 'dark' && 'bg-white hover:bg-white'
+        }`;
       default:
         return 'bg-mainPurple text-white hover:bg-mainPurpleHover';
     }
-  }, [variant]);
+  }, [variant, resolvedTheme]);
   return (
     <button
       className={`${sizeBaseStyling} ${variantBaseStyling} cursor-pointer w-full ${className}`}
