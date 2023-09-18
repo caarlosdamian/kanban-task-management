@@ -13,12 +13,12 @@ export const Content = () => {
     sidebar: { isOpen },
     modal: { type },
   } = useSelector((state: RootState) => state);
-  const selectedBoard = boards?.filter((board) => board?.isActive !== false);
+  const selectedBoard = boards?.filter((board) => board?.isActive);
   const dispatch = useDispatch();
   return (
     <div className={`bg-content ${isOpen ? 'md:ml-[300px]' : ''}`}>
       {type === 'addBoard' || type === 'editBoard' ? <BoardForm /> : null}
-      {boards.length !== 0 && selectedBoard[0].columns.length !== 0 ? (
+      {boards.length !== 0 && selectedBoard[0]?.columns?.length !== 0 ? (
         <Board board={selectedBoard[0]} />
       ) : boards.length === 0 ? (
         <Empty

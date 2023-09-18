@@ -8,6 +8,7 @@ import { toggle } from '@/redux/sidebarSlice/sidebarSlice';
 import { RootState } from '@/redux/store';
 import { OptionMenu } from '..';
 import { toggleModalType } from '@/redux/modalSlice/ModalSlice';
+import { deleteBoard } from '@/redux/boardSlice/boardSlice';
 
 const Navbar = () => {
   const { resolvedTheme } = useTheme();
@@ -17,6 +18,10 @@ const Navbar = () => {
 
   const handleEditBoard = () => {
     dispatch(toggleModalType('editBoard'));
+    setOptionsOpen(false)
+  }
+  const handleDeleteBoard = () => {
+    dispatch(deleteBoard());
     setOptionsOpen(false)
   }
   return (
@@ -92,7 +97,7 @@ const Navbar = () => {
                 optionOne="Edit Board"
                 optiontTwo="Delete Board"
                 handleClickOptionOne={handleEditBoard}
-                handleClickOptionTwo={handleEditBoard}
+                handleClickOptionTwo={handleDeleteBoard}
                 handleClosed={setOptionsOpen}
               />
             )}

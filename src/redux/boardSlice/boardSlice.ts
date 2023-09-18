@@ -20,8 +20,22 @@ export const boardSlice = createSlice({
       const activeIndex = getActiveBoardIndex(state);
       state[activeIndex] = payload;
     },
+    deleteBoard: (state) => {
+      const boardLenght = state.length;
+      if (boardLenght === 1) {
+        return (state = []);
+      }
+      return (state = state
+        .filter((board) => !board.isActive)
+        .map((item, index) => {
+          if (index === 0) {
+            return { ...item, isActive: true };
+          }
+          return item;
+        }));
+    },
     addNewBoard: (state, { payload }) => {
-      state.push(payload);
+      state.push({ ...payload, isActive: state.length === 0 ? true : false });
     },
     toggleTask: (
       state: Board[],
@@ -93,6 +107,7 @@ export const {
   toggleColum,
   editBoard,
   addNewBoard,
+  deleteBoard,
 } = boardSlice.actions;
 
 export default boardSlice.reducer;
