@@ -38,7 +38,6 @@ export const BoardForm = () => {
     dispatch(toggleModalType('idle'));
   };
   const handleSave = (form: any) => {
-    console.log('Entrando');
     type === 'addBoard'
       ? dispatch(addNewBoard(form))
       : dispatch(editBoard(form));
