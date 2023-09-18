@@ -21,7 +21,7 @@ export const boardSlice = createSlice({
       state[activeIndex] = payload;
     },
     addNewBoard: (state, { payload }) => {
-      state.push(payload)
+      state.push(payload);
     },
     toggleTask: (
       state: Board[],

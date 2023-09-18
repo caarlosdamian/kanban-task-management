@@ -27,7 +27,7 @@ export const BoardForm = () => {
         : getActiveBoard(boards),
     [type, boards]
   );
-  const { register, control, watch, formState, handleSubmit } = useForm({
+  const { register, control, formState, handleSubmit } = useForm({
     defaultValues: activeBoard,
   });
   const { fields, append, remove } = useFieldArray({
@@ -72,7 +72,7 @@ export const BoardForm = () => {
                   // @ts-ignore
                   error={
                     formState?.errors.columns &&
-                      // @ts-ignore
+                    // @ts-ignore
                     formState?.errors?.columns[index]?.name.message
                   }
                   register={{

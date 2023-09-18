@@ -1,18 +1,20 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '../button/Button';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggle } from '@/redux/sidebarSlice/sidebarSlice';
 import { RootState } from '@/redux/store';
+import { OptionMenu } from '..';
 
 const Navbar = () => {
   const { resolvedTheme } = useTheme();
   const dispatch = useDispatch();
   const { isOpen } = useSelector((state: RootState) => state.sidebar);
+  const [optionsOpen, setOptionsOpen] = useState(false);
   return (
-    <nav className="h-[64px] md:h-20 lg:h-[97px] z-50 relative">
+    <nav className="h-[64px] md:h-20 lg:h-[97px] z-20 relative">
       <div className="fixed md:h-20 lg:h-[97px] left-0 right-0 flex items-center justify-start gap-4 bg-primary md:gap-0 max-h-[97px]">
         <div
           className={`pl-4 py-5 min-h-[50px] md:pt-8 md:min-h-[80px] lg:min-h-[97px] md:px-6 md:min-w-[264px] md:border-lines lg:items-center lg:flex lg:justify-center ${
@@ -77,7 +79,9 @@ const Navbar = () => {
               width={4}
               height={16}
               className="cursor-pointer"
+              onClick={() => setOptionsOpen(!optionsOpen)}
             />
+            {optionsOpen && <OptionMenu handleClosed={setOptionsOpen}/>}
           </div>
         </div>
       </div>

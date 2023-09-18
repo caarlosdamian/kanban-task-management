@@ -1,3 +1,4 @@
+export { OptionMenu } from './optionMenu/OptionMenu';
 export { TextField } from './textField/TextField';
 export { Modal } from './modal/Modal';
 export { Button } from './button/Button';
