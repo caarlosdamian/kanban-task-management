@@ -7,12 +7,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggle } from '@/redux/sidebarSlice/sidebarSlice';
 import { RootState } from '@/redux/store';
 import { OptionMenu } from '..';
+import { toggleModalType } from '@/redux/modalSlice/ModalSlice';
 
 const Navbar = () => {
   const { resolvedTheme } = useTheme();
   const dispatch = useDispatch();
   const { isOpen } = useSelector((state: RootState) => state.sidebar);
   const [optionsOpen, setOptionsOpen] = useState(false);
+
+  const handleEditBoard = () => {
+    dispatch(toggleModalType('editBoard'));
+    setOptionsOpen(false)
+  }
   return (
     <nav className="h-[64px] md:h-20 lg:h-[97px] z-20 relative">
       <div className="fixed md:h-20 lg:h-[97px] left-0 right-0 flex items-center justify-start gap-4 bg-primary md:gap-0 max-h-[97px]">
@@ -81,7 +87,15 @@ const Navbar = () => {
               className="cursor-pointer"
               onClick={() => setOptionsOpen(!optionsOpen)}
             />
-            {optionsOpen && <OptionMenu handleClosed={setOptionsOpen}/>}
+            {optionsOpen && (
+              <OptionMenu
+                optionOne="Edit Board"
+                optiontTwo="Delete Board"
+                handleClickOptionOne={handleEditBoard}
+                handleClickOptionTwo={handleEditBoard}
+                handleClosed={setOptionsOpen}
+              />
+            )}
           </div>
         </div>
       </div>
