@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={jakarta.className}>
+      <body className={jakarta.className} suppressHydrationWarning={true}>
         <ContextProvider>{children}</ContextProvider>
       </body>
     </html>

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { Board } from '../board/Board';
 import { toggleModalType } from '@/redux/modalSlice/ModalSlice';
-import { BoardForm } from '../boardForm/BoardForm';
+import { ModalProvider } from '../modalProvider/ModalProvider';
 
 export const Content = () => {
   const {
@@ -17,7 +17,7 @@ export const Content = () => {
   const dispatch = useDispatch();
   return (
     <div className={`bg-content ${isOpen ? 'md:ml-[300px]' : ''}`}>
-      {type === 'addBoard' || type === 'editBoard' ? <BoardForm /> : null}
+      <ModalProvider />
       {boards.length !== 0 && selectedBoard[0]?.columns?.length !== 0 ? (
         <Board board={selectedBoard[0]} />
       ) : boards.length === 0 ? (

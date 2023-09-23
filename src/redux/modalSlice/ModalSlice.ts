@@ -4,6 +4,7 @@ type ModalType =
   | 'editTask'
   | 'addTask'
   | 'deleteBoard'
+  | 'deleteTask'
   | 'addBoard'
   | 'editBoard'
   | 'deleteBoard'

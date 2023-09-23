@@ -18,12 +18,12 @@ const Navbar = () => {
 
   const handleEditBoard = () => {
     dispatch(toggleModalType('editBoard'));
-    setOptionsOpen(false)
-  }
+    setOptionsOpen(false);
+  };
   const handleDeleteBoard = () => {
-    dispatch(deleteBoard());
+    dispatch(toggleModalType('deleteBoard'));
     setOptionsOpen(false)
-  }
+  };
   return (
     <nav className="h-[64px] md:h-20 lg:h-[97px] z-20 relative">
       <div className="fixed md:h-20 lg:h-[97px] left-0 right-0 flex items-center justify-start gap-4 bg-primary md:gap-0 max-h-[97px]">

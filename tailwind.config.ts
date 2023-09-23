@@ -25,6 +25,9 @@ const config: Config = {
       },
       padding:{
         '14px': '14px'
+      },
+      fontSize :{
+        '13px': '0.813rem'
       }
     },
   },

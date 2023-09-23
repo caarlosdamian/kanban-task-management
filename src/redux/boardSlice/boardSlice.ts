@@ -34,6 +34,12 @@ export const boardSlice = createSlice({
           return item;
         }));
     },
+    deleteTask: (state, { payload }) => {
+      const columnIndex = payload.columIndex;
+      const taskIndex = payload.taskIndex;
+      const activeIndex = getActiveBoardIndex(state);
+      state[activeIndex].columns[columnIndex].tasks.splice(taskIndex, 1);
+    },
     addNewBoard: (state, { payload }) => {
       state.push({ ...payload, isActive: state.length === 0 ? true : false });
     },
