@@ -6,6 +6,7 @@ import { BoardForm } from '../boardForm/BoardForm';
 import { DeleteModal } from '../deleteModal/DeleteModal';
 import { deleteBoard } from '@/redux/boardSlice/boardSlice';
 import { toggleModalType } from '@/redux/modalSlice/ModalSlice';
+import { Taskboard } from '../taskBoard/Taskboard';
 
 export const ModalProvider = () => {
   const {
@@ -19,6 +20,7 @@ export const ModalProvider = () => {
   };
 
   if (type === 'addBoard' || type === 'editBoard') return <BoardForm />;
+  if (type === 'editTask' || type === 'addTask') return <Taskboard />;
   if (type === 'deleteBoard' || type === 'deleteTask')
     return (
       <DeleteModal
