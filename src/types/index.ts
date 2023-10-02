@@ -1,5 +1,3 @@
-
-
 export interface Board {
   name: string;
   columns: Column[];
@@ -22,4 +20,8 @@ export interface Task {
 export interface Subtask {
   title: string;
   isCompleted: boolean;
+}
+
+export interface SelectedItemI extends Task {
+  taskIndex: number;
 }

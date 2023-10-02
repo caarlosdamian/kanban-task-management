@@ -1,3 +1,4 @@
+import { Task } from '@/types';
 import { createSlice } from '@reduxjs/toolkit';
 
 type ModalType =
@@ -8,10 +9,17 @@ type ModalType =
   | 'addBoard'
   | 'editBoard'
   | 'deleteBoard'
+  | 'viewTask'
   | 'idle';
 
-const initialState: { type: ModalType } = {
+const initialState: { type: ModalType; selectedItem: Task } = {
   type: 'idle',
+  selectedItem: {
+    title: '',
+    description: '',
+    status: '',
+    subtasks: [],
+  },
 };
 
 export const modalSlice = createSlice({
@@ -21,9 +29,12 @@ export const modalSlice = createSlice({
     toggleModalType: (state, { payload }: { payload: ModalType }) => {
       state.type = payload;
     },
+    setSelectedItem: (state, { payload }: { payload: Task }) => {
+      state.selectedItem = payload;
+    },
   },
 });
 
-export const { toggleModalType } = modalSlice.actions;
+export const { toggleModalType, setSelectedItem } = modalSlice.actions;
 
 export default modalSlice.reducer;

@@ -1,5 +1,8 @@
 import { toggleTask } from '@/redux/boardSlice/boardSlice';
-import { toggleModalType } from '@/redux/modalSlice/ModalSlice';
+import {
+  setSelectedItem,
+  toggleModalType,
+} from '@/redux/modalSlice/ModalSlice';
 import { Task } from '@/types';
 import React from 'react';
 import { useDispatch } from 'react-redux';
@@ -36,7 +39,16 @@ export const TaskCard = ({ item, colIndex, task }: Props) => {
       onDragStart={handleOnDrag}
       onDragOver={(e) => e.preventDefault()}
       onDrop={handleDrop}
-      onClick={()=> dispatch(toggleModalType('editTask'))}
+      onClick={() => {
+        dispatch(
+          setSelectedItem({
+            ...item,
+            columIndex: colIndex,
+            taskIndex: task,
+          })
+        );
+        dispatch(toggleModalType('viewTask'));
+      }}
     >
       <p className="text-secondary text-[15px] leading-normal font-bold">
         {item.title}
