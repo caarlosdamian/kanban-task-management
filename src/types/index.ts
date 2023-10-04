@@ -23,5 +23,6 @@ export interface Subtask {
 }
 
 export interface SelectedItemI extends Task {
-  taskIndex: number;
+  taskIndex?: number;
+  colIndex?: number;
 }

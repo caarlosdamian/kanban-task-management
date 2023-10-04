@@ -3,8 +3,9 @@ import {
   setSelectedItem,
   toggleModalType,
 } from '@/redux/modalSlice/ModalSlice';
-import { Task } from '@/types';
-import React from 'react';
+import { Task, } from '@/types';
+import { getCompletedTask } from '@/utils/common';
+import React, { useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 interface Props {
   item: Task;
@@ -31,6 +32,11 @@ export const TaskCard = ({ item, colIndex, task }: Props) => {
     );
   };
 
+  const { completedTask, total } = useMemo(
+    () => getCompletedTask(item.subtasks),
+    [item]
+  );
+
   return (
     <div
       className="cursor-pointer py-6 px-4 bg-primary rounded-lg"
@@ -53,7 +59,9 @@ export const TaskCard = ({ item, colIndex, task }: Props) => {
       <p className="text-secondary text-[15px] leading-normal font-bold">
         {item.title}
       </p>
-      <p className="text-xs text-mediumGray font-bold">0 of 3 substasks</p>
+      <p className="text-xs text-mediumGray font-bold">
+        {completedTask} of {total} substasks
+      </p>
     </div>
   );
 };

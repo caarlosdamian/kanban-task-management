@@ -1,18 +1,20 @@
 'use client';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Modal } from '..';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   setSelectedItem,
   toggleModalType,
+  toggleSubTask,
 } from '@/redux/modalSlice/ModalSlice';
 import Image from 'next/image';
 import { SubTask } from '../subTask/SubTask';
 import { Select } from '../select/Select';
 import { RootState } from '@/redux/store';
-import { SelectedItemI, Subtask } from '@/types';
+import { Board, SelectedItemI, Subtask } from '@/types';
 import { getActiveBoard } from '@/redux/selectors/boardSelectors';
-import { toggleColum } from '@/redux/boardSlice/boardSlice';
+import { toggleColum, toggleSubtask } from '@/redux/boardSlice/boardSlice';
+import { getCompletedTask } from '@/utils/common';
 
 export const Task = () => {
   const dispatch = useDispatch();
@@ -22,7 +24,7 @@ export const Task = () => {
   } = useSelector((state: RootState) => state);
   const { title, description, status, subtasks, taskIndex } =
     selectedItem as SelectedItemI;
-  const statusColumns = getActiveBoard(boards)[0].columns;
+  const statusColumns = getActiveBoard(boards as Board[])[0].columns;
   const colIndex = statusColumns.findIndex((item) => item.name === status);
   const initialstatus = statusColumns.filter((item) => item.name === status);
 
@@ -34,6 +36,26 @@ export const Task = () => {
         description: '',
         status: '',
         subtasks: [],
+      })
+    );
+  };
+
+  const { completedTask, total } = useMemo(
+    () => getCompletedTask(subtasks),
+    [subtasks]
+  );
+
+  const handleCompleteSubtask = (index: number) => {
+    dispatch(
+      toggleSubtask({
+        colIndex: selectedItem.columIndex,
+        taskIndex: selectedItem.taskIndex,
+        subTaskIndex: index,
+      })
+    );
+    dispatch(
+      toggleSubTask({
+        subTaskIndex: index,
       })
     );
   };
@@ -61,11 +83,15 @@ export const Task = () => {
           </h2>
         </div>
         <div className="flex flex-col gap-4">
-          <h2 className="input-label">Subtasks (2 of 3)</h2>
+          <h2 className="input-label">
+            Subtasks ({completedTask} of {total})
+          </h2>
           <div className="flex flex-col gap-2">
-            {subtasks.map((subtask: Subtask) => (
+            {subtasks.map((subtask: Subtask, index) => (
               <SubTask
+                handleClick={handleCompleteSubtask}
                 key={subtask.title}
+                subtaskIndex={index}
                 isCompleted={subtask.isCompleted}
                 title={subtask.title}
               />

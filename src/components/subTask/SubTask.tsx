@@ -5,11 +5,21 @@ import { Select } from '../select/Select';
 interface Props {
   title: string;
   isCompleted: boolean;
+  handleClick: (index: number) => void;
+  subtaskIndex: number;
 }
 
-export const SubTask = ({ isCompleted, title }: Props) => {
+export const SubTask = ({
+  isCompleted,
+  title,
+  subtaskIndex,
+  handleClick,
+}: Props) => {
   return (
-    <div className="flex items-center gap-4 bg-content pl-3 pr-2 py-3 rounded min-h-full hover:bg-mainPurple hover:bg-opacity-25 cursor-pointer">
+    <div
+      className="flex items-center gap-4 bg-content pl-3 pr-2 py-3 rounded min-h-full hover:bg-mainPurple hover:bg-opacity-25 cursor-pointer"
+      onClick={() => handleClick(subtaskIndex)}
+    >
       <div
         className={`${
           isCompleted

@@ -73,6 +73,14 @@ export const boardSlice = createSlice({
         return taski;
       });
     },
+    toggleSubtask: (state, { payload }) => {
+      const activeIndex = getActiveBoardIndex(state);
+      state[activeIndex].columns[payload.colIndex].tasks[
+        payload.taskIndex
+      ].subtasks[payload.subTaskIndex].isCompleted =
+        !state[activeIndex].columns[payload.colIndex].tasks[payload.taskIndex]
+          .subtasks[payload.subTaskIndex].isCompleted;
+    },
     toggleColum: (
       state,
       {
@@ -114,6 +122,7 @@ export const {
   editBoard,
   addNewBoard,
   deleteBoard,
+  toggleSubtask,
 } = boardSlice.actions;
 
 export default boardSlice.reducer;

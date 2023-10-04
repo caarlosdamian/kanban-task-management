@@ -1,4 +1,4 @@
-import { Task } from '@/types';
+import { Task, SelectedItemI } from '@/types';
 import { createSlice } from '@reduxjs/toolkit';
 
 type ModalType =
@@ -12,7 +12,7 @@ type ModalType =
   | 'viewTask'
   | 'idle';
 
-const initialState: { type: ModalType; selectedItem: Task } = {
+const initialState: { type: ModalType; selectedItem: SelectedItemI } = {
   type: 'idle',
   selectedItem: {
     title: '',
@@ -32,9 +32,15 @@ export const modalSlice = createSlice({
     setSelectedItem: (state, { payload }: { payload: Task }) => {
       state.selectedItem = payload;
     },
+    toggleSubTask: (state, { payload }) => {
+      const { subTaskIndex } = payload;
+      state.selectedItem.subtasks[subTaskIndex].isCompleted =
+        !state.selectedItem.subtasks[subTaskIndex].isCompleted;
+    },
   },
 });
 
-export const { toggleModalType, setSelectedItem } = modalSlice.actions;
+export const { toggleModalType, setSelectedItem, toggleSubTask } =
+  modalSlice.actions;
 
 export default modalSlice.reducer;
