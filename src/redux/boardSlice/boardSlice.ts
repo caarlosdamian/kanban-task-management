@@ -20,6 +20,11 @@ export const boardSlice = createSlice({
       const activeIndex = getActiveBoardIndex(state);
       state[activeIndex] = payload;
     },
+    editTask: (state, { payload }) => {
+      const { taskIndex, columIndex, ...rest } = payload;
+      const activeIndex = getActiveBoardIndex(state);
+      state[activeIndex].columns[columIndex].tasks[taskIndex] = { ...rest };
+    },
     deleteBoard: (state) => {
       const boardLenght = state.length;
       if (boardLenght === 1) {
@@ -123,6 +128,7 @@ export const {
   addNewBoard,
   deleteBoard,
   toggleSubtask,
+  editTask
 } = boardSlice.actions;
 
 export default boardSlice.reducer;

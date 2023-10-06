@@ -99,6 +99,7 @@ const Navbar = () => {
                 handleClickOptionOne={handleEditBoard}
                 handleClickOptionTwo={handleDeleteBoard}
                 handleClosed={setOptionsOpen}
+                className='top-full right-6'
               />
             )}
           </div>

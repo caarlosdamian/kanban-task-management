@@ -7,6 +7,8 @@ interface Props {
   optiontTwo: string;
   handleClickOptionOne: () => void;
   handleClickOptionTwo: () => void;
+  className:string
+
 }
 
 export const OptionMenu = ({
@@ -14,9 +16,10 @@ export const OptionMenu = ({
   handleClickOptionTwo,
   optionOne,
   optiontTwo,
+  className
 }: Props) => {
   return (
-    <div className="rounded-lg absolute p-4 bg-primary top-full right-6 min-w-[192px] shadow-xl font-medium text-sm flex flex-col gap-4">
+    <div className={`rounded-lg absolute p-4 bg-primary min-w-[192px] shadow-xl font-medium text-sm flex flex-col gap-4 ${className}`}>
       <span
         className="text-mediumGray cursor-pointer"
         onClick={handleClickOptionOne}

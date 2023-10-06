@@ -37,10 +37,17 @@ export const modalSlice = createSlice({
       state.selectedItem.subtasks[subTaskIndex].isCompleted =
         !state.selectedItem.subtasks[subTaskIndex].isCompleted;
     },
+    editSelectedTask: (state, { payload }) => {
+      state.selectedItem = payload;
+    },
   },
 });
 
-export const { toggleModalType, setSelectedItem, toggleSubTask } =
-  modalSlice.actions;
+export const {
+  toggleModalType,
+  setSelectedItem,
+  toggleSubTask,
+  editSelectedTask,
+} = modalSlice.actions;
 
 export default modalSlice.reducer;

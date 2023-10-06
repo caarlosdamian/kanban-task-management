@@ -1,6 +1,6 @@
 'use client';
-import React, { useMemo } from 'react';
-import { Modal } from '..';
+import React, { useMemo, useState } from 'react';
+import { Modal, OptionMenu } from '..';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   setSelectedItem,
@@ -18,6 +18,7 @@ import { getCompletedTask } from '@/utils/common';
 
 export const Task = () => {
   const dispatch = useDispatch();
+  const [optionsOpen, setOptionsOpen] = useState(false);
   const {
     modal: { selectedItem },
     boards,
@@ -60,12 +61,21 @@ export const Task = () => {
     );
   };
 
+  const handleEditBoard = () => {
+    dispatch(toggleModalType('editTask'));
+    setOptionsOpen(false);
+  };
+  const handleDeleteBoard = () => {
+    dispatch(toggleModalType('deleteBoard'));
+    setOptionsOpen(false);
+  };
+
   return (
     <Modal
       onOverlayClick={handleClosed}
       className="bg-primary max-w-[343px] md:min-w-[480px] min-h-[413px] z-50 top-20 p-8"
     >
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6 relative">
         <div className="flex flex-col gap-6">
           <div className="flex items-center gap-4 justify-between">
             <h2 className="text-lg font-bold bg-primary">{title}</h2>
@@ -75,7 +85,7 @@ export const Task = () => {
               width={4}
               height={16}
               className="cursor-pointer"
-              // onClick={() => setOptionsOpen(!optionsOpen)}
+              onClick={() => setOptionsOpen(!optionsOpen)}
             />
           </div>
           <h2 className="text-mediumGray text-13px leading-6 font-medium">
@@ -112,6 +122,16 @@ export const Task = () => {
             initialValue={initialstatus[0]}
           />
         </div>
+        {optionsOpen && (
+          <OptionMenu
+            optionOne="Edit Task"
+            optiontTwo="Delete Task"
+            handleClickOptionOne={handleEditBoard}
+            handleClickOptionTwo={handleDeleteBoard}
+            handleClosed={setOptionsOpen}
+            className='top-[98px] right-[-65px]'
+          />
+        )}
       </div>
     </Modal>
   );

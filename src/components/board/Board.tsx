@@ -22,7 +22,9 @@ export const Board = ({ board }: Props) => {
       ))}
       <div
         className={`flex items-center justify-center h-screen w-72 mt-[38px] rounded-md cursor-pointer px-14 ${
-          resolvedTheme === 'dark' ? 'gradient-bg-dark' : 'gradient-bg'
+          resolvedTheme === 'dark' || resolvedTheme !== 'light'
+            ? 'gradient-bg-dark'
+            : 'gradient-bg'
         }`}
         onClick={() => dispatch(toggleModalType('editBoard'))}
       >

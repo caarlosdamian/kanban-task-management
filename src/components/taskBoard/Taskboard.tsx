@@ -4,10 +4,12 @@ import { Button, Modal, TextField } from '..';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import {
+  editSelectedTask,
   setSelectedItem,
   toggleModalType,
 } from '@/redux/modalSlice/ModalSlice';
 import { ArrayInput } from '../arrayInput/ArrayInput';
+import { editTask } from '@/redux/boardSlice/boardSlice';
 
 export const Taskboard = () => {
   const dispatch = useDispatch();
@@ -34,10 +36,9 @@ export const Taskboard = () => {
     dispatch(setSelectedItem({}));
   };
   const handleSave = (form: any) => {
-    // type === 'addBoard'
-    //   ? dispatch(addNewBoard(form))
-    //   : dispatch(editBoard(form));
-    // dispatch(toggleModalType('idle'));
+    dispatch(editTask(form));
+    dispatch(editSelectedTask(form));
+    dispatch(toggleModalType('viewTask'));
   };
 
   return (
