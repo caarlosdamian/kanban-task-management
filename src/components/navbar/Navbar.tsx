@@ -9,11 +9,16 @@ import { RootState } from '@/redux/store';
 import { OptionMenu } from '..';
 import { toggleModalType } from '@/redux/modalSlice/ModalSlice';
 import { deleteBoard } from '@/redux/boardSlice/boardSlice';
+import { getActiveBoard } from '@/redux/selectors/boardSelectors';
+import { Board } from '@/types';
 
 const Navbar = () => {
   const { resolvedTheme } = useTheme();
   const dispatch = useDispatch();
-  const { isOpen } = useSelector((state: RootState) => state.sidebar);
+  const {
+    sidebar: { isOpen },
+    boards,
+  } = useSelector((state: RootState) => state);
   const [optionsOpen, setOptionsOpen] = useState(false);
 
   const handleEditBoard = () => {
@@ -22,8 +27,10 @@ const Navbar = () => {
   };
   const handleDeleteBoard = () => {
     dispatch(toggleModalType('deleteBoard'));
-    setOptionsOpen(false)
+    setOptionsOpen(false);
   };
+  const activeBoard = getActiveBoard(boards);
+
   return (
     <nav className="h-[64px] md:h-20 lg:h-[97px] z-20 relative">
       <div className="fixed md:h-20 lg:h-[97px] left-0 right-0 flex items-center justify-start gap-4 bg-primary md:gap-0 max-h-[97px]">
@@ -83,6 +90,8 @@ const Navbar = () => {
               size="lg"
               label="+ Add New Task"
               className="hidden md:block md:px-6"
+              onClick={() => dispatch(toggleModalType('addTask'))}
+              disabled={!Boolean(activeBoard[0].columns.length !== 0)}
             />
             <Image
               src="/icon-vertical-ellipsis.svg"
@@ -99,7 +108,7 @@ const Navbar = () => {
                 handleClickOptionOne={handleEditBoard}
                 handleClickOptionTwo={handleDeleteBoard}
                 handleClosed={setOptionsOpen}
-                className='top-full right-6'
+                className="top-full right-6"
               />
             )}
           </div>

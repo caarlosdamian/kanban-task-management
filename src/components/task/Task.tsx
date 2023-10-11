@@ -3,6 +3,7 @@ import React, { useMemo, useState } from 'react';
 import { Modal, OptionMenu } from '..';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  editSelectedTask,
   setSelectedItem,
   toggleModalType,
   toggleSubTask,
@@ -65,9 +66,10 @@ export const Task = () => {
     dispatch(toggleModalType('editTask'));
     setOptionsOpen(false);
   };
-  const handleDeleteBoard = () => {
-    dispatch(toggleModalType('deleteBoard'));
-    setOptionsOpen(false);
+  const handleDeleteTask = () => {
+    // dispatch(toggleModalType('deleteBoard'));
+    // setOptionsOpen(false);
+    // new implementation
   };
 
   return (
@@ -109,15 +111,21 @@ export const Task = () => {
           </div>
           <Select
             options={statusColumns}
-            onChange={(e: any) =>
+            onChange={(e: any) => {
               dispatch(
                 toggleColum({
                   colIndex: e.index,
                   prevColIndex: colIndex,
                   taskIndex: taskIndex,
                 })
-              )
-            }
+              );
+              dispatch(
+                editSelectedTask({
+                  ...selectedItem,
+                  status: statusColumns[e.index].name,
+                })
+              );
+            }}
             valueKey="name"
             initialValue={initialstatus[0]}
           />
@@ -127,9 +135,9 @@ export const Task = () => {
             optionOne="Edit Task"
             optiontTwo="Delete Task"
             handleClickOptionOne={handleEditBoard}
-            handleClickOptionTwo={handleDeleteBoard}
+            handleClickOptionTwo={handleDeleteTask}
             handleClosed={setOptionsOpen}
-            className='top-[98px] right-[-65px]'
+            className="top-[98px] right-[-65px]"
           />
         )}
       </div>

@@ -16,6 +16,12 @@ export const boardSlice = createSlice({
         isActive: board.id === payload ? true : false,
       })));
     },
+
+    addNewTask: (state, { payload }) => {
+      const activeIndex = getActiveBoardIndex(state);
+      const columnIndex = state[activeIndex].columns.findIndex((item)=>item.name === payload.status);
+      state[activeIndex].columns[columnIndex].tasks.push(payload)
+    },
     editBoard: (state, { payload }) => {
       const activeIndex = getActiveBoardIndex(state);
       state[activeIndex] = payload;
@@ -121,14 +127,15 @@ export const boardSlice = createSlice({
 });
 
 export const {
-  setActiveBoard,
-  toggleTask,
-  toggleColum,
-  editBoard,
   addNewBoard,
+  addNewTask,
   deleteBoard,
+  editBoard,
+  editTask,
+  setActiveBoard,
+  toggleColum,
   toggleSubtask,
-  editTask
+  toggleTask,
 } = boardSlice.actions;
 
 export default boardSlice.reducer;

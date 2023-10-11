@@ -1,7 +1,11 @@
 import { useTheme } from 'next-themes';
-import React, { ButtonHTMLAttributes, HtmlHTMLAttributes, useMemo } from 'react';
+import React, {
+  ButtonHTMLAttributes,
+  HtmlHTMLAttributes,
+  useMemo,
+} from 'react';
 
-interface Props extends ButtonHTMLAttributes<HTMLButtonElement>  {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   size: 'sm' | 'lg';
   variant?: 'primary' | 'secondary' | 'destructive';
   label: string;
@@ -37,7 +41,7 @@ export const Button = ({
   }, [variant, resolvedTheme]);
   return (
     <button
-      className={`${sizeBaseStyling} ${variantBaseStyling} cursor-pointer w-full ${className}`}
+      className={`${sizeBaseStyling} ${variantBaseStyling} cursor-pointer w-full ${className} disabled:opacity-40 disabled:cursor-not-allowed`}
       type={type}
       {...props}
     >
