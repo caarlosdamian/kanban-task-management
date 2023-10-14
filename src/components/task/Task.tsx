@@ -26,9 +26,18 @@ export const Task = () => {
   } = useSelector((state: RootState) => state);
   const { title, description, status, subtasks, taskIndex } =
     selectedItem as SelectedItemI;
-  const statusColumns = getActiveBoard(boards as Board[])[0].columns;
-  const colIndex = statusColumns.findIndex((item) => item.name === status);
-  const initialstatus = statusColumns.filter((item) => item.name === status);
+  const statusColumns = useMemo(
+    () => getActiveBoard(boards as Board[])[0].columns,
+    [boards]
+  );
+  const colIndex = useMemo(
+    () => statusColumns.findIndex((item) => item.name === status),
+    [statusColumns, status]
+  );
+  const initialstatus = useMemo(
+    () => statusColumns.filter((item) => item.name === selectedItem.status),
+    [selectedItem, statusColumns]
+  );
 
   const handleClosed = () => {
     dispatch(toggleModalType('idle'));
@@ -67,9 +76,7 @@ export const Task = () => {
     setOptionsOpen(false);
   };
   const handleDeleteTask = () => {
-    // dispatch(toggleModalType('deleteBoard'));
-    // setOptionsOpen(false);
-    // new implementation
+    dispatch(toggleModalType('deleteTask'));
   };
 
   return (
@@ -123,6 +130,8 @@ export const Task = () => {
                 editSelectedTask({
                   ...selectedItem,
                   status: statusColumns[e.index].name,
+                  columIndex: e.index,
+                  taskIndex: statusColumns[e.index].tasks.length,
                 })
               );
             }}

@@ -130,6 +130,7 @@ export const {
   addNewBoard,
   addNewTask,
   deleteBoard,
+  deleteTask,
   editBoard,
   editTask,
   setActiveBoard,

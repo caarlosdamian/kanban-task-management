@@ -15,7 +15,7 @@ export const DeleteModal = ({
   title,
 }: Props) => {
   return (
-    <Modal className="bg-primary max-w-[343px] md:max-w-[480px] min-h-[284px] z-50 top-72 p-6 md:min-h-[226px]">
+    <Modal className="bg-primary max-w-[343px] md:max-w-[480px] min-h-[284px] z-50 top-20 p-6 md:min-h-[226px]">
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-6">
           <h2 className="text-error text-base font-bold md:text-lg">{title}</h2>

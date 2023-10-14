@@ -26,7 +26,7 @@ export const Modal = ({
         }
       ></div>
       <div
-        className={`bg-primary fixed left-0 right-0 m-auto w-fit rounded-md z-50 ${className}`}
+        className={`bg-primary fixed left-0 right-0 m-auto rounded-md z-50 ${className}`}
       >
         {children}
       </div>

@@ -30,6 +30,8 @@ const Navbar = () => {
     setOptionsOpen(false);
   };
   const activeBoard = getActiveBoard(boards);
+  const addTaskButtonDisable =
+    boards.length === 0 ? true : !Boolean(activeBoard[0]?.columns.length !== 0);
 
   return (
     <nav className="h-[64px] md:h-20 lg:h-[97px] z-20 relative">
@@ -77,7 +79,16 @@ const Navbar = () => {
             />
           </div>
           <div className="flex items-center gap-4 md:gap-6">
-            <div className="bg-mainPurpleHover opacity-50 px-18px p-[10px] md:flex-[2] rounded-3xl md:hidden">
+            <div
+              className={`bg-mainPurple ${
+                addTaskButtonDisable ? 'opacity-50 cursor-not-allowed' : ''
+              } px-18px p-[10px] md:flex-[2] rounded-3xl md:hidden`}
+              onClick={
+                addTaskButtonDisable
+                  ? undefined
+                  : () => dispatch(toggleModalType('addTask'))
+              }
+            >
               <Image
                 src="/icon-add-task-mobile.svg"
                 alt="logo-mobile"
@@ -91,7 +102,7 @@ const Navbar = () => {
               label="+ Add New Task"
               className="hidden md:block md:px-6"
               onClick={() => dispatch(toggleModalType('addTask'))}
-              disabled={!Boolean(activeBoard[0].columns.length !== 0)}
+              disabled={addTaskButtonDisable}
             />
             <Image
               src="/icon-vertical-ellipsis.svg"

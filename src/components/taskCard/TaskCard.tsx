@@ -1,12 +1,15 @@
+'use client';
 import { toggleTask } from '@/redux/boardSlice/boardSlice';
 import {
   setSelectedItem,
   toggleModalType,
 } from '@/redux/modalSlice/ModalSlice';
+import { getActiveBoard } from '@/redux/selectors/boardSelectors';
+import { RootState } from '@/redux/store';
 import { Task, } from '@/types';
 import { getCompletedTask } from '@/utils/common';
 import React, { useMemo } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 interface Props {
   item: Task;
   colIndex: number;
@@ -15,6 +18,8 @@ interface Props {
 
 export const TaskCard = ({ item, colIndex, task }: Props) => {
   const dispatch = useDispatch();
+  const {boards} = useSelector((state:RootState)=>state)
+  const activeBoard = getActiveBoard(boards)
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     const { prevColIndex, taskIndex } = JSON.parse(
@@ -51,6 +56,7 @@ export const TaskCard = ({ item, colIndex, task }: Props) => {
             ...item,
             columIndex: colIndex,
             taskIndex: task,
+            status: activeBoard[0].columns[colIndex].name
           })
         );
         dispatch(toggleModalType('viewTask'));

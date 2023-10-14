@@ -123,7 +123,7 @@ export const Sidebar = () => {
       {device === 'mobile' ? (
         <Modal
           isOpen={isOpen}
-          className={`top-20 z-[999]`}
+          className={`top-20 z-[999] w-fit`}
           onOverlayClick={handleClose}
         >
           {content}

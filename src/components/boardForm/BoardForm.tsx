@@ -46,7 +46,7 @@ export const BoardForm = () => {
   return (
     <Modal
       onOverlayClick={handleClosed}
-      className="bg-primary min-w-[343px] md:min-w-[480px] min-h-[413px] z-50 top-40 p-8"
+      className="bg-primary max-w-[343px] md:min-w-[480px] min-h-[413px] z-50 top-20 p-8"
     >
       <form className="flex flex-col gap-6" onSubmit={handleSubmit(handleSave)}>
         <h1 className="text-lg font-bold bg-primary">
