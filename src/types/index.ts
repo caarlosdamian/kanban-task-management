@@ -25,4 +25,5 @@ export interface Subtask {
 export interface SelectedItemI extends Task {
   taskIndex?: number;
   colIndex?: number;
+  columIndex? :any
 }

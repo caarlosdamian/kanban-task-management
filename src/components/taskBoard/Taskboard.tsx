@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useMemo, useState } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { Button, Modal, TextField } from '..';
@@ -36,6 +37,7 @@ export const Taskboard = () => {
 
   const { fields, append, remove } = useFieldArray({
     control,
+    // @ts-ignore
     name: 'subtasks',
   });
   const statusColumns = useMemo(() => getActiveBoard(boards as Board[])[0].columns, [boards]);

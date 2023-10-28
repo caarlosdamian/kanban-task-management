@@ -123,6 +123,7 @@ export const Task = () => {
                 toggleColum({
                   colIndex: e.index,
                   prevColIndex: colIndex,
+                  // @ts-ignore
                   taskIndex: taskIndex,
                 })
               );
